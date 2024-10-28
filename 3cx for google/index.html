@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+    <link rel="stylesheet" href="styles.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autenticación con Google y 3CX</title>
+</head>
+<body>
+    <h2>Autenticación con Google y 3CX</h2>
+    <form id="authForm">
+        <label for="deviceId">Device ID:</label>
+        <input type="text" id="deviceId" name="device_id" required>
+        <br><br>
+        <label for="deviceName">Device Name:</label>
+        <input type="text" id="deviceName" name="device_name" required>
+        <br><br>
+        <button type="button" onclick="authorize()">Iniciar sesión con Google</button>
+    </form>
+
+    <script>
+        function authorize() {
+            // Obtiene los valores de device_id y device_name
+            const deviceId = document.getElementById('deviceId').value;
+            const deviceName = document.getElementById('deviceName').value;
+
+            // Define la URL de autenticación de Google con 3CX
+            const authUrl = `http://172.16.1.5:5000/oauth2google?device_id=${deviceId}&device_name=${deviceName}`;
+
+            // Redirige al usuario a la URL de autenticación
+            window.location.href = authUrl;
+        }
+    </script>
+</body>
+</html>
